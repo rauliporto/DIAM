@@ -1,0 +1,28 @@
+{% extends "slavaukraine/template.html" %}
+{% load static %}
+{% block main %}
+    <div>
+        <section class="position-relative py-4 py-xl-5">
+            <div class="mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <p class="w-lg-50"></p>
+                </div>
+            </div>
+            <div class="container position-relative rounded contacts-page-card">
+                <div class="rounded">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        {% block box %}
+                            Template box
+
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <p class="w-lg-50"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% endblock %}

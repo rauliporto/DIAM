@@ -1,0 +1,330 @@
+/* Template */
+html {
+    color: #ffc400;
+}
+
+body {
+    color: #ffc400 !important;
+    background: #005BBB !important;
+    font-family: Helvetica, sans-serif
+}
+
+
+nav {
+    background: #ffc400;
+}
+
+.color-uk {
+    color: #005BBB !important;
+}
+
+.color-uk-w {
+    color: #ffffff !important;
+}
+
+.color-uk-w:hover {
+
+    text-decoration: underline;
+}
+
+
+.color-uk-w-b {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.logo-size{
+    width: 200%;
+    height: auto;
+    margin-top: 0.5rem;
+}
+
+
+/* Carrousel section */
+.carrousel-dimensions {
+    height: 380px;
+    width: 100%;
+
+}
+
+.carrousel-settings {
+    z-index: -1;
+}
+
+.carrousel-text {
+    color: #ffffff;
+    max-width: 450px;
+
+}
+
+.carrousel-subtext {
+    padding: 0;
+    margin: 0;
+
+}
+
+.carrousel-button {
+    color: #ffffff !important;
+    background: #ffc400 !important;
+}
+
+.carrousel-button:hover {
+    background-color: #ffb700 !important;
+}
+
+.carrousel-button-uk {
+    color: #ffffff !important;
+}
+
+.carrousel-highlight{
+    background-color: #ffb700 !important;;
+
+}
+.carrousel-highlight2{
+    background-color: #005BBB !important;;
+
+}
+
+/* Offerts section */
+.card-title {
+    color: #ffffff !important;
+}
+
+.card-subtitle {
+    color: #ffb700 !important;
+}
+
+.card-size {
+    height: 200px;
+}
+
+.card-link{
+    text-decoration: none;
+    width: 32.5%;
+}
+
+.card-before-text {
+    color: #ffb700 !important;
+}
+
+.card-text {
+    color: #005BBB !important;
+}
+
+.card-subtext {
+    color: #909090 !important;
+}
+
+
+/* Statistics section */
+.statistics-color {
+    background: transparent !important;
+}
+
+.statistics-text {
+    color: #005BBB !important;
+}
+
+/* Testimonies section */
+
+.testimonies-title {
+    color: #ffffff !important;
+}
+
+.testimonies-color {
+    color: #909090 !important;
+
+}
+
+.testimonies-before-text {
+    color: #ffb700 !important;
+}
+
+.testimonies-text {
+    color: #FFFFFF !important;
+}
+
+
+/* Footer section */
+
+.footer-configurations {
+    color: #005BBB !important;
+    background: #ffc400 !important;
+    height: auto !important;
+
+
+    padding: 1rem;
+}
+
+
+/* login page */
+
+.login-size-form {
+    width: 700px !important;
+    height: auto;
+}
+
+.login-size-card {
+    height: auto;
+}
+
+.login-size-fileds {
+    width: 350px;
+    height: auto;
+}
+
+.login-color-error {
+    color: crimson !important;
+}
+
+.login-color-help {
+    color: grey;
+}
+
+.login-allign-fields {
+    text-align: left;
+    width: 100% !important;
+    margin: 10px;
+}
+
+.login-hiperlinks, .login-hiperlinks:active {
+    color: grey !important;
+}
+
+.login-hiperlinks:hover {
+    color: #ffb700 !important;
+}
+
+/* register page */
+
+.register-size-form {
+    width: 700px !important;
+    height: auto;
+}
+
+.register-size-card {
+    height: auto;
+}
+
+.register-color-error {
+    color: crimson !important;
+}
+
+.register-size-fileds {
+    width: 470px;
+    height: auto;
+}
+
+.register-color-help {
+    color: grey;
+}
+
+.register-allign-fields {
+    text-align: left;
+    width: 100% !important;
+    margin: 10px;
+}
+
+
+/* Contacts Page */
+
+.contacts-page-card {
+    background: #ffffff;
+    width: 60% !important;
+    height: auto !important;
+}
+
+.contacts-margin-title {
+    margin-bottom: 1rem !important;
+}
+
+.contacts-subtext {
+    color: #909090;
+}
+
+.contacts-contacts {
+
+    color: #909090;
+}
+
+/* volunteer area */
+
+.volunteer-register {
+    background: #ffc400 !important;
+}
+
+.volunteer-text {
+    color: #ffffff !important;
+}
+
+.volunteer-subtext {
+    color: #909090;
+}
+
+.volunteer-subtext-blue {
+    color: #005BBB;
+}
+
+.volunteer-container {
+    max-width: 70% !important;
+}
+
+
+/* reserved area */
+.reserved-page-card {
+    background: #ffffff !important;
+    width: 80% !important;
+    margin-top: 1.5rem !important;
+}
+
+.reserved-page-buttons {
+    margin: 0.5rem !important;
+}
+
+.reserved-page-information {
+    margin: 0.5rem !important;
+    color: grey;
+    padding: 1rem !important;
+}
+
+
+.reserved-remove-underline{
+    text-decoration: none !important;
+
+}
+
+/* Messages */
+
+.messages-page-box {
+    padding: 5% !important;
+}
+
+.message-page-title {
+    color: white;
+}
+
+.message-page-mtitle {
+    color: #ffc400;
+}
+
+.message-page-stitle {
+    color: #005BBB;
+}
+
+.message-page-mreceiv {
+    color: crimson !important;
+}
+
+.messge-reply {
+    font-size: small !important;
+}
+
+.message-reply-textarea {
+    height: auto;
+}
+
+/* Edit proposal */
+
+.edit-proposal-size {
+    width: 50%;
+}

@@ -1,0 +1,56 @@
+{% extends "slavaukraine/template_box.html" %}
+{% load static %}
+
+{% block box %}
+
+<div class="container">
+    <br>
+    <div class="list-group">
+        <table id="table_id" class="display message-page-mtitle">
+            <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Especialidade</th>
+                <th>Localização</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% for object in object_list %}
+                {% if object.title != "None" %}
+                <td class="list-group-item list-group-item-action">
+                    <p class="mb-1 message-page-stitle">{{ object.title }}</p>
+                </td>
+                <td><p class="mb-1 message-page-stitle">&nbsp;&nbsp; &nbsp;&nbsp;{{ object.expertiseNeeded }}</p></td>
+                <td>
+                    <div class="d-flex w-100 justify-content-between">
+                        <small class="text-muted">&nbsp; {{ object.city }}</small>
+                        <a class="btn-sm btn-primary text-right carrousel-button-uk reserved-remove-underline" role="button"
+                               href="{% url 'slavaukraine:proposal' object.id  %}">+ Informação</a>
+                    </div>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+      href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable({}
+        );
+    });
+</script>
+{% endblock %}

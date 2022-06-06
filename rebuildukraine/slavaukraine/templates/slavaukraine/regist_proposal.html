@@ -1,0 +1,64 @@
+{% extends "slavaukraine/template_box.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block box %}
+<div class="container position-relative">
+
+    <div class="text-center">
+        <br>
+        <h2>Criação de Proposta</h2>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <br>
+        </div>
+
+        <div class="col-6 align-content-center">
+            <form class="color-uk" method="post" id="proposalForm"
+                  data-cities-url="{% url 'slavaukraine:ajax_load_cities' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <br>
+                <div class="d-inline-flex w-100 justify-content-end">
+                    <button type="submit" class="btn-sm btn-primary text-right carrousel-button-uk">Gravar Proposta
+                    </button>
+                </div>
+            </form>
+            <br>
+            <br>
+        </div>
+        <div class="col-3">
+            <br>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        //gets the ID of the selected country
+        $("#id_country").change(function () {
+            const url = $("#proposalForm").attr("data-cities-url");
+            const countryId = $(this).val(); //Gets the selected country from the HTML input
+
+            $.ajax({ //initializes an AJAX request
+                url: url,   //Sets the url of the request (= /proposals/ajax/load-cities)
+                data: {
+                    'country_id': countryId //Adds the country id to the GET parameters
+                },
+                success: function (data) { // 'data' will be the return of the 'load_cities view function
+                    //Way of debug the info that HTML is receiving: console.log(data);
+                    $("#id_city").html(data); // Replaces the contents of the city input with the data that came from the server!
+                    /*
+                                        let html_data='<option value="">------------</option>';
+                                        data.forEach(function (city){
+                                            html_data += '<option value="$(city.id)">$(city.name)</option>'
+                                        });
+                                        console.log(html_data);
+                                        $("#id_city").html(html_data)*/
+                }
+            })
+
+        })
+    </script>
+</div>
+{% endblock%}

@@ -1,0 +1,63 @@
+{% extends "slavaukraine/template_box.html" %}
+{% load static %}
+{% block box %}
+
+<div class="mb-5">
+    <div class="col-md-8 col-xl-6 text-center mx-auto">
+        <p class="w-lg-50"></p>
+    </div>
+</div>
+<div class="container position-relative rounded contacts-page-card">
+    <div class="row mb-5 contacts-margin-title">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <br>
+
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-xl-12 text-center mx-auto">
+            <h2>{{ topic.subjet}}</h2>
+            {% for message in messages %}
+            {% if message.sender != request.user %}
+            <div>
+                <div class="mb-3">
+                    <p class="fw-bold mb-0 card-before-text text-end messge-reply">{{ message.sender.first_name }} {{ message.sender.last_name }} </p>
+                    <textarea class="form-control text-end message-reply-textarea" id="text" name="text"
+                              placeholder="text" disabled>{{ message.message }}</textarea>
+                    <p class="mb-0 card-text text-end messge-reply">{{ message.date }}</p>
+                </div>
+
+
+            </div>
+            {% else %}
+            <div>
+                <div class="mb-3">
+                    <p class="fw-bold mb-0 card-before-text text-start messge-reply">{{ message.sender.first_name }} {{ message.sender.last_name }}</p>
+                    <textarea class="form-control text-start message-reply-textarea" id="text2" name="text"
+                              placeholder="text" disabled>{{ message.message }}</textarea>
+                    <p class="mb-0 card-text text-start messge-reply">{{ message.date }}</p>
+                </div>
+            </div>
+
+            {% endif %}
+            {% endfor %}
+            <div>
+                <form class="p-3 p-xl-6" method="post" action="{% url 'slavaukraine:message' topic.id  %}">
+                    {% csrf_token %}
+                    <div class="mb-1"><textarea class="form-control" id="message-1" name="message" rows="6"
+                                                placeholder="Message"></textarea></div>
+                    <div>
+                        <button class="btn btn-primary d-block w-100" type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mb-5">
+    <div class="col-md-12 col-xl-12 text-center mx-auto">
+        <p class="w-lg-50"></p>
+    </div>
+</div>
+
+{% endblock %}

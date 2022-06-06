@@ -1,0 +1,79 @@
+{% extends "slavaukraine/template_box.html" %}
+{% load static %}
+{% block box %}
+
+<!-- User -->
+<div class="tab-pane fade show active reserved-page-information" id="pills-home" role="tabpanel"
+     aria-labelledby="pills-home-tab">
+    <br>
+    <div class="col-md-10 col-xl-8 text-center mx-auto">
+        <br>
+        <h2 class="message-page-title color-uk">Informação do utilizador</h2>
+<br>
+        <br>
+    </div>
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <div class="d-flex flex-column justify-content-center align-items-start h-100 contacts-contacts">
+                <div class="d-flex align-items-center p-3 ">
+                    {% if other_user.profile_image %}
+                    <img class="rounded-circle flex-shrink-0 me-3 fit-cover"
+                         width="150"
+                         height="150"
+                         src="{{ other_user.profile_image.url }}">
+                    {% else %}
+                    <img class="rounded-circle flex-shrink-0 me-3 fit-cover"
+                         width="150"
+                         height="150"
+                         src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-lg-9 col-xl-9">
+            <div>
+                <br>
+                {% if other_user.is_enterprise %}
+                <div class="mb-3">
+                    {% if other_user.first_name %}
+                    <p>Nome: {{ other_user.first_name }} {{ other_user.profile_image }}</p>
+                    {% endif %}
+                    <p>Email: {{ other_user.email }}</p>
+                    <p>Número de contribuinte: {{ other_user.taxnumber }}</p>
+                    <p>Morada: {{ other_user.address }}</p>
+                    <p>Data de nascimento: {{ other_user.birth }}</p>
+                    <p>Date joined: {{ other_user.date_joined }}</p>
+                    <br>
+                </div>
+                {% endif %}
+                {% if other_user.is_person %}
+                <div>
+                     <br>
+                    {% if other_user.first_name %}
+                    <p>Nome Pessoa: {{ other_user.first_name }} </p>
+                    {% endif %}
+                    <p>Email: {{ other_user.email }}</p>
+                    <p>Número de contribuinte: {{ other_user.taxnumber }}</p>
+                    <p>Morada: {{ other_user.address }}</p>
+                    <p>Data de nascimento: {{ other_user.birth }}</p>
+                    <p>Date joined: {{ other_user.date_joined }}</p>
+                    <br>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if user != other_user %}
+     <div class="d-inline-flex w-100 justify-content-end">
+            <a class="btn-sm btn-primary text-right carrousel-button-uk" role="button"
+               href="{% url 'slavaukraine:create_new_message' other_user.id  %}">Contactar Utilizador</a>
+        </div>
+    {% endif %}
+    <br>
+<br>
+</div>
+
+
+{% endblock%}

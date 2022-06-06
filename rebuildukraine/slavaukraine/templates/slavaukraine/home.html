@@ -1,0 +1,247 @@
+{% extends "slavaukraine/template.html" %}
+{% load static %}
+{% block main %}
+
+<div class="carousel slide carrousel-dimensions rounded" data-bs-ride="carousel" id="carousel-1">
+    <div class="container carousel-inner h-100 rounded">
+        <div class="carousel-item active h-100 rounded"><img
+                class="w-100 d-block position-absolute h-100 fit-cover carrousel-settings"
+                src="{% static 'slavaukraine/assets/img/slider1.jpg' %}" alt="Volunteering in Ukraine">
+            <div class="container d-flex flex-column justify-content-center h-100">
+                <div class="row">
+                    <div class="col-md-6 col-xl-4 offset-md-2">
+                        <div class="carrousel-text">
+                            <h1 class="text-uppercase fw-bold carrousel-text carrousel-highlight">&nbsp;Queres ajudar?<br>&nbsp;Regista-te já</h1>
+                            <p class="my-3 carrousel-subtext carrousel-highlight2">&nbsp;Na nossa plataforma vais encontrar vários projetos  &nbsp; &nbsp;para
+                                a reconstrução da Ucrânia</p>
+                            <br>
+                            <a
+                                class="btn btn-primary btn-lm me-2 carrousel-button-uk" role="button"
+                                href="{% url 'slavaukraine:register_volunteer' %}">Registar</a><a
+                                class="btn btn-outline-yellow btn-lm carrousel-button" role="button"
+                                href="{% url 'slavaukraine:listproposals'%}">Verificar
+                            Projetos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item h-100">
+            <img
+                    class="w-100 d-block position-absolute h-100 fit-cover carrousel-settings"
+                    src="{% static 'slavaukraine/assets/img/slider5.jpg' %}" alt="Projects to Ukraine">
+            <div class="container d-flex flex-column justify-content-center h-100">
+                <div class="row">
+                    <div class="col-md-6 col-xl-4 offset-md-2">
+                        <div class="carrousel-text">
+                            <h1 class="text-uppercase fw-bold carrousel-text carrousel-highlight">&nbsp;Junta-te a nós!<br>&nbsp;Regista a tua empresa</h1>
+                            <p class="my-3 carrousel-subtext carrousel-highlight2">&nbsp;Os nossos voluntários querem ajudar o povo ucraniano &nbsp;a
+                                reerguer o seu país</p><a
+                                class="btn btn-primary btn-lm me-2 carrousel-button-uk" role="button"
+                                href="{% url 'slavaukraine:register_enterprise' %}">Registar</a><a
+                                class="btn btn-outline-yellow btn-lm carrousel-button" role="button"
+                                href="{% url 'slavaukraine:listproposals'%}">Verificar
+                            Projetos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item h-100"><img
+                class="w-100 d-block position-absolute h-100 fit-cover carrousel-settings"
+                src="{% static 'slavaukraine/assets/img/slider8.jpg' %}" alt="Building Ukraine">
+            <div class="container d-flex flex-column justify-content-center h-100">
+                <div class="row">
+                    <div class="col-md-6 col-xl-4 offset-md-2">
+                        <div class="carrousel-text">
+                            <h1 class="text-uppercase fw-bold carrousel-highlight">&nbsp;Tens Duvidas?<br>&nbsp;Contacta-nos!</h1>
+                            <p class="my-3 carrousel-subtext carrousel-highlight2">&nbsp;Nós queremos ligar voluntários a projetos que podem &nbsp;mudar
+                            a vida de uma pessoa</p><a
+                                class="btn btn-primary btn-lm me-2 carrousel-button-uk" role="button"
+                                href="{% url 'slavaukraine:contacts' %}">Contacta-nos</a><a
+                                class="btn btn-outline-yellow btn-lm carrousel-button" role="button"
+                                href="{% url 'slavaukraine:listproposals'%}">Verificar
+                            Projetos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span
+            class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a
+            class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span
+            class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carousel-1" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
+    </ol>
+</div>
+<div>
+    <!-- Ofertas disponiveis -->
+    <div class="container py-4 py-xl-5">
+        {% if last_proposals.0 != None %}
+
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto card-title">
+                <h2>Últimos Projetos</h2>
+                <p class="w-lg-50 card-subtitle">Consulte as novas entradas de projetos na nossa plataforma</p>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <a class="card-link" href="{% url 'slavaukraine:proposal' last_proposals.0.id  %}">
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top w-100 d-block fit-cover card-size"
+                             src="{% static 'slavaukraine/assets/img/trabalhador_1.jpg' %}">
+                        <div class="card-body p-4">
+                            <p class="text-primary mb-0 card-before-text">Projeto</p>
+                            <h4 class="card-text">{{ last_proposals.0.title }}</h4>
+                            <p class="card-subtext">{{ last_proposals.0.description }}</p>
+                            <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                                     height="50"
+                                                     src="{% static 'slavaukraine/assets/img/Building.jpg' %}">
+                                <div>
+                                    <p class="fw-bold mb-0 card-before-text">{{ last_proposals.0.enterprise }}</p>
+                                    <p class="text-muted mb-0 card-text">{{ last_proposals.0.expertiseNeeded }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% if last_proposals.1 != None %}
+            <a class="card-link" href="{% url 'slavaukraine:proposal' last_proposals.1.id  %}">
+                <div class="col">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover card-size"
+                                           src="{% static 'slavaukraine/assets/img/trabalhador_2.png' %}">
+                        <div class="card-body p-4">
+                            <p class="text-primary mb-0 card-before-text">Projeto</p>
+                            <h4 class="card-text">{{ last_proposals.1.title }}</h4>
+                            <p class="card-subtext">{{ last_proposals.1.description }}</p>
+                            <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                                     height="50"
+                                                     src="{% static 'slavaukraine/assets/img/Volunteering.jpg' %}">
+                                <div>
+                                    <p class="fw-bold mb-0 card-before-text">{{ last_proposals.1.enterprise }}</p>
+                                    <p class="text-muted mb-0 card-text">{{ last_proposals.1.expertiseNeeded }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+            {% if last_proposals.2 != None %}
+            <a class="card-link" href="{% url 'slavaukraine:proposal' last_proposals.2.id  %}">
+                <div class="col">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover card-size"
+                                           src="{% static 'slavaukraine/assets/img/trabalhador_3.png' %}">
+                        <div class="card-body p-4">
+                            <p class="text-primary mb-0 card-before-text">Projeto</p>
+                            <h4 class="card-title card-text">{{ last_proposals.2.title }}</h4>
+                            <p class="card-subtext">{{ last_proposals.2.description }}</p>
+                            <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                                     height="50"
+                                                     src="{% static 'slavaukraine/assets/img/Volunteering2.jpg' %}">
+                                <div>
+                                    <p class="fw-bold mb-0 card-before-text">{{ last_proposals.2.enterprise }}</p>
+                                    <p class="text-muted mb-0 card-text">{{ last_proposals.2.expertiseNeeded }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    <!-- Estatisticas -->
+    <div class="container py-4 py-xl-5 statistics-color">
+        <div class="text-center text-white-50 bg-warning border rounded border-0 p-3">
+            <div class="row row-cols-2 row-cols-md-4 statistics-color">
+                <div class="col">
+                    <div class="p-3">
+                        <h4 class="display-5 fw-bold text-white mb-0">{{ volunteers }}+</h4>
+                        <p class="mb-0 statistics-text">Voluntários</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <h4 class="display-5 fw-bold text-white mb-0">{{ enterpises }}+</h4>
+                        <p class="mb-0 statistics-text">Empresas</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <h4 class="display-5 fw-bold text-white mb-0">{{ proposals }}+</h4>
+                        <p class="mb-0 statistics-text">Projetos Criados</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <h4 class="display-5 fw-bold text-white mb-0">{{ closed }}</h4>
+                        <p class="mb-0 statistics-text">Projetos Concluidos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testemunhos -->
+    <div class="container py-4 py-xl-5">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto testimonies-title">
+                <h2>Testemunhos</h2>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
+            <div class="col">
+                <div>
+                    <p class="bg-light border rounded border-0 border-light p-4 testimonies-color">Quero agradecer a
+                        todas as pessoas que tornaram possível que a reconstrução de 7 casa fosse possível.</p>
+                    <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                             height="50"
+                                             src="{% static 'slavaukraine/assets/img/person1.jpg' %}">
+                        <div>
+                            <p class="fw-bold text-primary mb-0 testimonies-before-text">Empresa X</p>
+                            <p class="text-muted mb-0 testimonies-text">Construção Civil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <p class="bg-light border rounded border-0 border-light p-4 testimonies-color">Foi incrível ter
+                        tido a oportunidade de ajudar as pessoas no terreno. Sem vocês não tinha sido
+                        possível...</p>
+                    <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                             height="50"
+                                             src="{% static 'slavaukraine/assets/img/person2.jpg' %}">
+                        <div>
+                            <p class="fw-bold text-primary mb-0 testimonies-before-text">Pedro Mateus</p>
+                            <p class="text-muted mb-0 testimonies-text">Voluntário</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <p class="bg-light border rounded border-0 border-light p-4 testimonies-color">Inscrevi-me e
+                        passado um dia já estava a embarcar para uma pequena cidade de Kiev onde tive a oportunidade
+                        de fazer a diferença. Obrigado</p>
+                    <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
+                                             height="50"
+                                             src="{% static 'slavaukraine/assets/img/person3.jpg' %}">
+                        <div>
+                            <p class="fw-bold text-primary mb-0 testimonies-before-text">Joana Arminda</p>
+                            <p class="text-muted mb-0 testimonies-text">Voluntária</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

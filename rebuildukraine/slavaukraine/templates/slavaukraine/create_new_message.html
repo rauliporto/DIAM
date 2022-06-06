@@ -1,0 +1,54 @@
+{% extends "slavaukraine/template_box.html" %}
+{% load static %}
+{% block main %}
+<div>
+    <section class="position-relative py-4 py-xl-5">
+        <div class="mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <p class="w-lg-50"></p>
+            </div>
+        </div>
+        <div class="container position-relative rounded contacts-page-card">
+
+            <div class="row mb-5 contacts-margin-title">
+                <div class="col-md-10 col-xl-8 text-center mx-auto">
+                    <br>
+                    <h2>Envio de Mensagem</h2>
+                    <p class="w-lg-50 contacts-subtext">Utilize o nosso serviço de mensagem para contactar os
+                        voluntários e as empresas de forma segura. Não aconselhamos a contactar via outros metodos
+                        de contacto</p>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 col-lg-8 col-xl-8">
+                    <div>
+                        <form class="p-3 p-xl-4" method="post"
+                              action="{% url 'slavaukraine:create_new_message' recipient %}">
+                            {% csrf_token %}
+                            <div class="mb-3"><input class="form-control" type="text" id="sender" name="sender"
+                                                     placeholder="{{ request.user.first_name }}" disabled></div>
+                            <div class="mb-3"><input class="form-control" type="text" id="receiver" name="receiver"
+                                                     placeholder="{{ to_name.first_name }}" disabled></div>
+                            <div class="mb-3"><input class="form-control" type="text" id="subjet" name="subjet"
+                                                     placeholder="Titulo da mensagem"></div>
+                            <div class="mb-3"><textarea class="form-control" id="message" name="message" rows="4"
+                                                        placeholder="Escreva aqui a mensagem que pretende envia ao utilizador"></textarea>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary d-block w-100" type="submit">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <div class="mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <p class="w-lg-50"></p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

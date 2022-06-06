@@ -1,0 +1,282 @@
+{% extends "slavaukraine/template_box.html" %}
+{% load static %}
+{% block box %}
+<br>
+<ul class="nav nav-pills mb-3 reserved-page-buttons" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                aria-selected="true">Conta
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-messages-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-messages" type="button" role="tab"
+                aria-controls="pills-messages" aria-selected="false">Mensagens
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-projects-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-projects" type="button" role="tab"
+                aria-controls="pills-projects" aria-selected="false">
+            {% if user.is_person %} Projectos Inscritos
+            {% elif user.is_enterprise %} Projetos Registados
+            {% endif %}
+        </button>
+    </li>
+    {% if user.is_person %}
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-saved-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-saved" type="button" role="tab"
+                aria-controls="pills-saved" aria-selected="false">Favoritos
+        </button>
+    </li>
+    {% endif %}
+</ul>
+
+<div class="tab-content reserved-page-information" id="pills-tabContent">
+    <!-- User -->
+    <div class="tab-pane fade show active reserved-page-information" id="pills-home" role="tabpanel"
+         aria-labelledby="pills-home-tab">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <div class="d-flex flex-column justify-content-sm-start align-items-start h-100 contacts-contacts">
+                    <div class="d-flex align-items-center p-3 ">
+                        {% if user.profile_image  %}
+                        <img class="rounded-circle flex-shrink-0 me-3 fit-cover"
+                             width="150"
+                             height="150"
+                             src="{{ user.profile_image.url }}">
+                        {% else %}
+                        <img class="rounded-circle flex-shrink-0 me-3 fit-cover"
+                             width="150"
+                             height="150"
+                             src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9 col-xl-9">
+                <div>
+                    <br>
+                    {% if user.is_enterprise %}
+                    <div class="mb-3">
+                        {% if user.first_name %}
+                        <p>Nome: {{ user.first_name }} {{ user.last_name }}</p>
+                        {% endif %}
+                        <p>Email: {{ user.email }}</p>
+                        <p>Número de contribuinte: {{ user.taxnumber }}</p>
+                        <p>Morada: {{ user.address }}</p>
+                        <p>Date joined: {{ user.date_joined }}</p>
+                        <br>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary text-right carrousel-button-uk" role="button"
+                           href="{% url 'slavaukraine:enterprise_edit' user.pk %}">Alterar</a>
+                    </div>
+                    {% endif %}
+
+                    {% if user.is_person %}
+                    <div>
+                        {% if user.first_name %}
+                        <p>Nome Pessoa: {{ user.first_name }} {{ user.last_name }}</p>
+                        {% endif %}
+                        <p>Email: {{ user.email }}</p>
+                        <p>Número de contribuinte: {{ user.taxnumber }}</p>
+                        <p>Morada: {{ user.address }}</p>
+                        <p>Data de nascimento: {{ user.birth }}</p>
+                        <p>Date joined: {{ user.date_joined }}</p>
+                        <br>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary text-right carrousel-button-uk" role="button"
+                           href="{% url 'slavaukraine:edit_person' request.user.id %}">Alterar</a>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- Messages-->
+    <div class="tab-pane fade reserved-page-information" id="pills-messages" role="tabpanel"
+         aria-labelledby="pills-messages-tab">
+        <div class="list-group">
+            <table id="table_id2" class="display message-page-mtitle">
+                <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Criado por</th>
+                    <th>Data</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% for message in list %}
+                    {% if message.subjet != "None" %}
+                    <td class="list-group-item list-group-item-action">
+                        <p class="mb-1 message-page-stitle">{{ message.subjet }}</p>
+                    </td>
+                    <td>
+                        <p class="mb-1 message-page-stitle">&nbsp;&nbsp; &nbsp;&nbsp;{{ message.receiver.first_name }}
+                        </p>
+                    </td>
+                    <td>
+                        <div class="d-flex w-100 justify-content-between">
+                            <small class="text-muted">&nbsp; {{ message.date }}</small>
+
+                            <a class="btn-sm btn-primary text-right carrousel-button-uk reserved-remove-underline" role="button"
+                               href="{% url 'slavaukraine:message' message.id  %}">Ver / Responder</a>
+
+                        </div>
+                    </td>
+
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        </div>
+
+
+    </div>
+    <!-- Projetos -->
+    <div class="tab-pane fade reserved-page-information" id="pills-projects" role="tabpanel"
+         aria-labelledby="pills-projects-tab">
+        <div class="list-group">
+            <table id="table_id" class="display message-page-mtitle">
+                <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Especialidade</th>
+                    <th>Localização</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% if user.is_enterprise %}
+                    {% for proposal in proposals_enterprise %}
+                    {% if proposal.title != "None" %}
+                    <td class="list-group-item list-group-item-action">
+                        <p class="mb-1 message-page-stitle">{{ proposal.title }}</p>
+                    </td>
+                    <td>
+                        <p class="mb-1 message-page-stitle">&nbsp;&nbsp; &nbsp;&nbsp;{{ proposal.expertiseNeeded }}</p>
+                    </td>
+                    <td>
+                        <div class="d-flex w-100 justify-content-between">
+                            <small class="text-muted">&nbsp; {{ proposal.city }}</small>
+                            <a class="btn-sm btn-primary text-right carrousel-button-uk reserved-remove-underline" role="button"
+                               href="{% url 'slavaukraine:proposal' proposal.id  %}">Ver / Editar</a>
+                        </div>
+                    </td>
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% if user.is_person %}
+                {% for proposal in proposals %}
+                {% if proposal.title != "None" %}
+                <td class="list-group-item list-group-item-action">
+                    <p class="mb-1 message-page-stitle">{{ proposal.title }}</p>
+                </td>
+                <td><p class="mb-1 message-page-stitle">&nbsp;&nbsp; &nbsp;&nbsp;{{ proposal.expertiseNeeded }}</p>
+                </td>
+                <td>
+                    <div class="d-flex w-100 justify-content-between">
+                        <small class="text-muted">&nbsp; {{ proposal.city }}</small>
+                        <a class="btn-sm btn-primary text-right carrousel-button-uk reserved-remove-underline" role="button"
+                           href="{% url 'slavaukraine:proposal' proposal.id  %}">Ver / Editar</a>
+                    </div>
+
+
+                </td>
+                </tr>
+
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+            </table>
+            <br>
+        </div>
+        <br>
+        {% if user.is_enterprise %}
+        <div class="d-inline-flex w-100 justify-content-end">
+            <a class="btn-sm btn-primary text-right carrousel-button-uk reserved-remove-underline" role="button"
+               href="{% url 'slavaukraine:regist_proposal'  %}">Criar Nova Proposta</a>
+        </div>
+        {% endif %}
+    </div>
+    <!-- Favoritos -->
+    {% if user.is_person %}
+    <div class="tab-pane fade reserved-page-information" id="pills-saved" role="tabpanel"
+         aria-labelledby="pills-saved-tab">
+        <div class="list-group">
+            <table id="table_id4" class="display message-page-mtitle">
+                <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Especialidade</th>
+                    <th>Localização</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% for favorite in favorites %}
+                    {% if favorite.title != "None" %}
+                    <td class="list-group-item list-group-item-action">
+                        <p class="mb-1 message-page-stitle">{{ favorite.title }}</p>
+                    </td>
+                    <td><p class="mb-1 message-page-stitle">&nbsp;&nbsp; &nbsp;&nbsp;{{ favorite.expertiseNeeded }}</p>
+                    </td>
+                    <td>
+                        <div class="d-flex w-100 justify-content-between">
+                            <small class="text-muted">&nbsp; {{ favorite.city }}</small>
+                           <a class="btn-sm btn-primary text-right carrousel-button-uk reserved-remove-underline" role="button"
+                               href="{% url 'slavaukraine:proposal' favorite.id  %}">Ver / Editar</a>
+                        </div>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+      href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable({}
+        );
+    });
+
+    $(document).ready(function () {
+        $('#table_id2').DataTable({}
+        );
+    });
+    $(document).ready(function () {
+        $('#table_id4').DataTable({}
+        );
+    });
+</script>
+{% endblock %}

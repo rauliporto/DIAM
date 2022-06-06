@@ -1,0 +1,125 @@
+{% extends "slavaukraine/template.html" %}
+{% load static %}
+{% block main %}
+    <div>
+        <div class="mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <p class="w-lg-50"></p>
+            </div>
+        </div>
+        <!-- Ser Voluntartio -->
+        <div class="container h-100 ">
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2>Mais do que uma Empresa. <b>Um propósito.</b></h2>
+                    <p class="w-lg-50 volunteer-text">Sabe tudo como podes ajudar através da sua empresa. <br>#Informação #WeStandForUkraine</p>
+
+
+                </div>
+            </div>
+            <div class="row mb-5">
+                <p class="volunteer-text">
+                    <b>Conhece já as vantagens</b>, desde os benefícios fiscais, a proporcionar experiências únicas, enriquecedoras e até mesmo ao reforço da reputação...
+                    <br><br>
+                    <b>1)</b> O primeiro passo é simples, é o registo da tua empresa! Regista-te, não te esqueças de especificar o NIF da empresa.
+                    <br><br>
+                    <b>2)</b> Após o teu registo terás acesso exclusivo a "features" <b>#RebuildingUkraine</b> onde além
+                    de consultar e editar
+                    a informação da tua empresa poderás criar propostas de voluntariado, consultá-las e editá-las.
+                    <br><br>
+                    <b>3)</b> As tuas propostas vão encontrar o matching perfeito com os nossos voluntários e... <b>Começa o LEGADO!</b>
+                    <br><br>
+                    <b>4)</b> Uma vez feito o matching, entre os candidatos inscritos na proposta da tua empresa tens a opção de escolher e notificá-lo via e-mail.<b>#WeStandBehindUkraine</b>
+                </p>
+            </div>
+        </div>
+
+        <!-- area  com Botão registar -->
+        <div class="container h-100 ">
+            <div class="text-white bg-primary border rounded border-0 p-4 py-5 volunteer-register">
+                <div class="row h-100">
+                    <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                        <div>
+                            <h1 class="text-uppercase fw-bold text-white mb-3 volunteer-text">Missão Reconstrução, bora?<br/>
+                            </h1>
+                            <p class="mb-4 volunteer-subtext">Inscreve a tua empresa e ajuda a reerguer a Ucrânia!</p>
+                            <a class="btn btn-primary fs-5 py-2 px-4" role="button" href="{% url 'slavaukraine:register_enterprise' %}">Regista-te Já</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Divisao -->
+        <div class="mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <p class="w-lg-50"></p>
+            </div>
+        </div>
+
+         <!-- area Ajuda-nos -->
+
+        <div class="container d-flex flex-column align-items-center py-4 py-xl-5">
+            <div class="row gy-4 row-cols-1 row-cols-md-2 w-100 volunteer-container">
+                <div class="col order-md-first">
+                    <div class="card"><img class="card-img w-100 d-block" style="opacity: 0.8"
+                                           src="{% static "slavaukraine/assets/img/be_volunteer_2.png" %}">
+                        <div class="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center p-4">
+                            <h4></h4>
+                            <p class="volunteer-subtext-blue"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-md-flex order-first justify-content-md-start align-items-md-end order-md-1">
+                    <div class="volunteer-container">
+                        <h2>A tua ajuda é importante</h2>
+                        <p class="w-lg-50 volunteer-text">Ao ajudares estás a ajudar todos nós a reconstruir as
+                            habitações das casas na Ucrania</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 w-100 volunteer-container" >
+                <div class="col order-md-2">
+                    <div class="card"><img class="card-img w-100 d-block" style="opacity: 0.8"
+                                           src="{% static "slavaukraine/assets/img/be_volunteer_1.png" %}">
+                        <div class="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center p-4">
+                            <h4></h4>
+                            <p class="volunteer-subtext-blue"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-md-flex order-first justify-content-md-end text-end align-items-md-end order-md-1">
+                    <div class="volunteer-container">
+                        <h2>A tua ajuda é importante</h2>
+                        <p class="w-lg-50 volunteer-text">Ao ajudares estás a ajudar todos nós a reconstruir as
+                            habitações das casas na Ucrania</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 w-100 volunteer-container">
+                <div class="col order-md-first" >
+                    <div class="card"><img class="card-img w-100 d-block" style="opacity: 0.8"
+                                           src="{% static "slavaukraine/assets/img/be_volunteer_3.png" %}">
+                        <div class="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center p-4">
+                            <h4></h4>
+                            <p class="volunteer-subtext-blue"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-md-flex order-first justify-content-md-start align-items-md-end order-md-1">
+                    <div class="volunteer-container">
+                        <h2>A tua ajuda é importante</h2>
+                        <p class="w-lg-50 volunteer-text">Ao ajudares estás a ajudar todos nós a reconstruir as
+                            habitações das casas na Ucrania</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <p class="w-lg-50"></p>
+            </div>
+        </div>
+{% endblock %}

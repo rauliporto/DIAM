@@ -1,0 +1,63 @@
+{% extends "slavaukraine/template_box.html" %}
+{% load static %}
+{% block box %}
+<div class="container position-relative">
+
+    <div class="text-center">
+        <br>
+        <h2>Edição de Utilizador</h2>
+        <br>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <br>
+        </div>
+
+        <div class="col-6 align-content-center color-uk">
+            {% if user.is_enterprise %}
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                <br>
+                <br>
+                <div class="justify-content-between">
+                    <button type="submit" class="btn btn-outline-yellow btn-sm carrousel-button">
+                        Editar
+                    </button>
+                    <button type="submit" class="btn btn-outline-yellow btn-sm carrousel-button"
+                            formaction="{% url 'slavaukraine:delete_user' user.id %}">
+                        Apagar Conta
+                    </button>
+                </div>
+                <br><br>
+            </form>
+            {% elif user.is_person %}
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                <br>
+                <br>
+                <div class="justify-content-between">
+                    <button type="submit" class="btn btn-outline-yellow btn-sm carrousel-button">
+                        Editar
+                    </button>
+                    <button type="submit" class="btn btn-outline-yellow btn-sm carrousel-button"
+                            formaction="{% url 'slavaukraine:delete_user' user.id %}">
+                        Apagar Conta
+                    </button>
+                </div>
+                <br><br>
+            </form>
+            {% endif %}
+            <br>
+            <br>
+        </div>
+        <div class="col-3">
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}
